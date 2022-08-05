@@ -11,12 +11,6 @@ win = pygame.display.set_mode((w, h))
 circle_count = 10
 circle_list = []
 
-def circle_create_func():
-	if len(circle_list) < circle_count:
-		for i in range(1, circle_count + 1):
-			i = Circle()
-		print(circle_list)
-
 
 class Circle():
 	def __init__(self):
@@ -29,8 +23,13 @@ def draw_bg():
 
 def draw():
 	draw_bg()
-	
 	pygame.display.update()
+
+#circle-creating--------------------
+for i in range(1, circle_count + 1):
+	i = Circle()
+	print(circle_list)
+#circle-creating--------------------
 
 def main():
 	run = True
@@ -39,7 +38,6 @@ def main():
 			if event.type == pygame.QUIT:
 				pygame.quit()
 				sys.exit()
-		circle_create_func()
 		draw()
 
 if __name__ == "__main__":

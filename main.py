@@ -17,6 +17,9 @@ class Circle():
 		self.x = random.randint(0, w);
 		self.y = random.randint(0, h);
 		circle_list.append([self.x, self.y])
+	
+	def draw_circles():
+		pygame.draw.circle(win, (0, 255, 0), (self.x, self.y), 5)
 
 def draw_bg():
 	win.fill((100, 100, 100))
@@ -26,9 +29,11 @@ def draw():
 	pygame.display.update()
 
 #circle-creating--------------------
-for i in range(1, circle_count + 1):
-	i = Circle()
-	print(circle_list)
+def circle_creating():
+    for i in range(1, circle_count + 1):
+    	i = Circle()
+    	print(circle_list)
+circle_creating()
 #circle-creating--------------------
 
 def main():

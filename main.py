@@ -4,27 +4,85 @@ import random
 
 pygame.init()
 
-w = h = 800
+size = 1000
+
+w = size + 400
+h = size
 
 win = pygame.display.set_mode((w, h))
 
-circle_count = 10
-circle_list = []
+circle_count = 50
 
 
 class Circle:
+    circle_list = []
+
+    wasd_speed = 2
+
     def __init__(self):
         self.x = random.randint(0, w)
         self.y = random.randint(0, h)
-        circle_list.append([self.x, self.y])
 
-    def draw_circles(self):
-        pygame.draw.circle(win, (0, 255, 0), (self.x, self.y), 5)
+        self.shadow_x = self.x + random.randint(-50, 50)
+        self.shadow_y = self.y + random.randint(-50, 50)
+
+        self.color = (0, random.randint(50, 255), 0)
+        self.size = random.randint(10, 50)
+        Circle.circle_list.append([self.x, self.y, self.color, self.size, self.shadow_x, self.shadow_y])
+
+    @staticmethod
+    def draw_circles():
+        for i in range(circle_count):
+
+            pygame.draw.circle(win, (100, 100, 100),
+                               (Circle.circle_list[i][4], Circle.circle_list[i][5]),
+                               Circle.circle_list[i][3])
+
+        for i in range(circle_count):
+
+            pygame.draw.circle(win, Circle.circle_list[i][2],
+                               (Circle.circle_list[i][0], Circle.circle_list[i][1]),
+                               Circle.circle_list[i][3])
+
+    @staticmethod
+    def motion():
+            
+        keys = pygame.key.get_pressed()
+
+        # wasd movement ---------------------------------------------
+        if keys[pygame.K_w]:
+            for i in range(circle_count):
+                Circle.circle_list[i][1] -= Circle.wasd_speed
+                Circle.circle_list[i][5] -= Circle.wasd_speed
+        
+        if keys[pygame.K_s]:
+            for i in range(circle_count):
+                Circle.circle_list[i][1] += Circle.wasd_speed
+                Circle.circle_list[i][5] += Circle.wasd_speed
+
+        if keys[pygame.K_a]:
+            for i in range(circle_count):
+                Circle.circle_list[i][0] -= Circle.wasd_speed
+                Circle.circle_list[i][4] -= Circle.wasd_speed
+
+        if keys[pygame.K_d]:
+            for i in range(circle_count):
+                Circle.circle_list[i][0] += Circle.wasd_speed
+                Circle.circle_list[i][4] += Circle.wasd_speed
+        # wasd movement ---------------------------------------------
+
+        if keys[pygame.K_LEFT]:
+            for i in range(circle_count):
+                pass
+
+        if keys[pygame.K_RIGHT]:
+            for i in range(circle_count):
+                pass
 
 
 # circle-creating--------------------
 def circle_creating():
-    for i in range(1, circle_count + 1):
+    for i in range(circle_count):
         Circle()
 
 
@@ -40,7 +98,11 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
+        Circle.motion()
+
         win.fill((20, 20, 20))
+        Circle.draw_circles()
         pygame.display.update()
 
         clock.tick(60)

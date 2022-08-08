@@ -77,26 +77,25 @@ class Circle:
         if keys[pygame.K_LEFT]:
             for i in range(circle_count):
 
-                rad = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
-                sin = math.sin(rad)
-                cos = math.cos(rad)
+                angle = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
+                angle -= 0.01
+                distance = math.sqrt((Circle.circle_list[i][1] - center[1]) ** 2 + (Circle.circle_list[i][0] - center[0]) ** 2)
+                Circle.circle_list[i][0] = center[0] + distance * math.cos(angle)
+                Circle.circle_list[i][1] = center[1] + distance * math.sin(angle)
+                # тени сам делай чел ты
 
-                #r = ((Circle.circle_list[i][0] - center[0])**2 + (Circle.circle_list[i][1] - center[1])**2)**0.5
 
-                Circle.circle_list[i][0] += cos
-                Circle.circle_list[i][1] += sin
+                
 
         if keys[pygame.K_RIGHT]:
             for i in range(circle_count):
 
-                rad = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
-                sin = math.sin(rad)
-                cos = math.cos(rad)
-
-                #r = ((Circle.circle_list[i][0] - center[0])**2 + (Circle.circle_list[i][1] - center[1])**2)**0.5
-
-                Circle.circle_list[i][0] -= cos
-                Circle.circle_list[i][1] -= sin
+                angle = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
+                angle += 0.01
+                distance = math.sqrt((Circle.circle_list[i][1] - center[1]) ** 2 + (Circle.circle_list[i][0] - center[0]) ** 2)
+                Circle.circle_list[i][0] = center[0] + distance * math.cos(angle)
+                Circle.circle_list[i][1] = center[1] + distance * math.sin(angle)
+                
 
 
 # circle-creating--------------------

@@ -10,7 +10,7 @@ size = 1000
 w = size + 400
 h = size 
 
-center = (w / 2, h / 2)
+center = (w / 2, 0)
 
 win = pygame.display.set_mode((w, h))
 
@@ -26,8 +26,8 @@ class Circle:
         self.x = random.randint(0, w)
         self.y = random.randint(0, h)
 
-        self.shadow_x = self.x + random.randint(-50, 50)
-        self.shadow_y = self.y + random.randint(-50, 50)
+        self.shadow_x = self.x
+        self.shadow_y = self.y + random.randint(0, 200)
 
         self.color = (0, random.randint(50, 255), 0)
         self.size = random.randint(10, 50)
@@ -74,17 +74,17 @@ class Circle:
                 Circle.circle_list[i][4] += Circle.wasd_speed
         # wasd movement ---------------------------------------------
 
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_RIGHT]:
             for i in range(circle_count):
 
                 angle = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
-                angle -= 0.01
+                angle -= 0.004
                 distance = math.sqrt((Circle.circle_list[i][1] - center[1]) ** 2 + (Circle.circle_list[i][0] - center[0]) ** 2)
                 Circle.circle_list[i][0] = center[0] + distance * math.cos(angle)
                 Circle.circle_list[i][1] = center[1] + distance * math.sin(angle)
                 
                 angle = math.atan2(Circle.circle_list[i][5] - center[1], Circle.circle_list[i][4] - center[0])
-                angle -= 0.01
+                angle -= 0.0035
                 distance = math.sqrt((Circle.circle_list[i][5] - center[1]) ** 2 + (Circle.circle_list[i][4] - center[0]) ** 2)
                 Circle.circle_list[i][4] = center[0] + distance * math.cos(angle)
                 Circle.circle_list[i][5] = center[1] + distance * math.sin(angle)
@@ -92,17 +92,17 @@ class Circle:
 
                 
 
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_LEFT]:
             for i in range(circle_count):
 
                 angle = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
-                angle += 0.01
+                angle += 0.004
                 distance = math.sqrt((Circle.circle_list[i][1] - center[1]) ** 2 + (Circle.circle_list[i][0] - center[0]) ** 2)
                 Circle.circle_list[i][0] = center[0] + distance * math.cos(angle)
                 Circle.circle_list[i][1] = center[1] + distance * math.sin(angle)
 
                 angle = math.atan2(Circle.circle_list[i][5] - center[1], Circle.circle_list[i][4] - center[0])
-                angle += 0.01
+                angle += 0.0035
                 distance = math.sqrt((Circle.circle_list[i][5] - center[1]) ** 2 + (Circle.circle_list[i][4] - center[0]) ** 2)
                 Circle.circle_list[i][4] = center[0] + distance * math.cos(angle)
                 Circle.circle_list[i][5] = center[1] + distance * math.sin(angle)
@@ -130,7 +130,7 @@ def main():
 
         Circle.motion()
 
-        win.fill((20, 20, 20))
+        win.fill((200, 200, 200))
         Circle.draw_circles()
         pygame.display.update()
 

@@ -77,7 +77,7 @@ class Circle:
         if keys[pygame.K_LEFT]:
             for i in range(circle_count):
 
-                rad = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
+                rad = math.atan2(Circle.circle_list[i][0] - center[0], Circle.circle_list[i][1] - center[1])
                 sin = math.sin(rad)
                 cos = math.cos(rad)
 
@@ -89,7 +89,7 @@ class Circle:
         if keys[pygame.K_RIGHT]:
             for i in range(circle_count):
 
-                rad = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
+                rad = math.atan2(Circle.circle_list[i][0] - center[0], Circle.circle_list[i][1] - center[1])
                 sin = math.sin(rad)
                 cos = math.cos(rad)
 

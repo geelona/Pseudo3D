@@ -53,22 +53,22 @@ class Circle:
         keys = pygame.key.get_pressed()
 
         # wasd movement ---------------------------------------------
-        if keys[pygame.K_w]:
+        if keys[pygame.K_s]:
             for i in range(circle_count):
                 Circle.circle_list[i][1] -= Circle.wasd_speed
                 Circle.circle_list[i][5] -= Circle.wasd_speed
         
-        if keys[pygame.K_s]:
+        if keys[pygame.K_w]:
             for i in range(circle_count):
                 Circle.circle_list[i][1] += Circle.wasd_speed
                 Circle.circle_list[i][5] += Circle.wasd_speed
 
-        if keys[pygame.K_a]:
+        if keys[pygame.K_d]:
             for i in range(circle_count):
                 Circle.circle_list[i][0] -= Circle.wasd_speed
                 Circle.circle_list[i][4] -= Circle.wasd_speed
 
-        if keys[pygame.K_d]:
+        if keys[pygame.K_a]:
             for i in range(circle_count):
                 Circle.circle_list[i][0] += Circle.wasd_speed
                 Circle.circle_list[i][4] += Circle.wasd_speed
@@ -82,7 +82,12 @@ class Circle:
                 distance = math.sqrt((Circle.circle_list[i][1] - center[1]) ** 2 + (Circle.circle_list[i][0] - center[0]) ** 2)
                 Circle.circle_list[i][0] = center[0] + distance * math.cos(angle)
                 Circle.circle_list[i][1] = center[1] + distance * math.sin(angle)
-                # тени сам делай чел ты
+                
+                angle = math.atan2(Circle.circle_list[i][5] - center[1], Circle.circle_list[i][4] - center[0])
+                angle -= 0.01
+                distance = math.sqrt((Circle.circle_list[i][5] - center[1]) ** 2 + (Circle.circle_list[i][4] - center[0]) ** 2)
+                Circle.circle_list[i][4] = center[0] + distance * math.cos(angle)
+                Circle.circle_list[i][5] = center[1] + distance * math.sin(angle)
 
 
                 
@@ -95,6 +100,12 @@ class Circle:
                 distance = math.sqrt((Circle.circle_list[i][1] - center[1]) ** 2 + (Circle.circle_list[i][0] - center[0]) ** 2)
                 Circle.circle_list[i][0] = center[0] + distance * math.cos(angle)
                 Circle.circle_list[i][1] = center[1] + distance * math.sin(angle)
+
+                angle = math.atan2(Circle.circle_list[i][5] - center[1], Circle.circle_list[i][4] - center[0])
+                angle += 0.01
+                distance = math.sqrt((Circle.circle_list[i][5] - center[1]) ** 2 + (Circle.circle_list[i][4] - center[0]) ** 2)
+                Circle.circle_list[i][4] = center[0] + distance * math.cos(angle)
+                Circle.circle_list[i][5] = center[1] + distance * math.sin(angle)
                 
 
 

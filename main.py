@@ -82,7 +82,9 @@ class Circle:
                 distance = math.sqrt((Circle.circle_list[i][1] - center[1]) ** 2 + (Circle.circle_list[i][0] - center[0]) ** 2)
                 Circle.circle_list[i][0] = center[0] + distance * math.cos(angle)
                 Circle.circle_list[i][1] = center[1] + distance * math.sin(angle)
-                # тени сам делай чел ты
+                Circle.circle_list[i][5] = Circle.circle_list[i][1]
+                Circle.circle_list[i][4] = Circle.circle_list[i][0]
+
 
 
                 
@@ -95,6 +97,9 @@ class Circle:
                 distance = math.sqrt((Circle.circle_list[i][1] - center[1]) ** 2 + (Circle.circle_list[i][0] - center[0]) ** 2)
                 Circle.circle_list[i][0] = center[0] + distance * math.cos(angle)
                 Circle.circle_list[i][1] = center[1] + distance * math.sin(angle)
+                Circle.circle_list[i][5] = Circle.circle_list[i][1]
+                Circle.circle_list[i][4] = Circle.circle_list[i][0]
+
                 
 
 
@@ -128,3 +133,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

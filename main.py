@@ -1,13 +1,16 @@
 import pygame
 import sys
 import random
+import math
 
 pygame.init()
 
 size = 1000
 
 w = size + 400
-h = size
+h = size 
+
+center = (w / 2, h / 2)
 
 win = pygame.display.set_mode((w, h))
 
@@ -73,11 +76,27 @@ class Circle:
 
         if keys[pygame.K_LEFT]:
             for i in range(circle_count):
-                pass
+
+                rad = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
+                sin = math.sin(rad)
+                cos = math.cos(rad)
+
+                #r = ((Circle.circle_list[i][0] - center[0])**2 + (Circle.circle_list[i][1] - center[1])**2)**0.5
+
+                Circle.circle_list[i][0] += cos * 10
+                Circle.circle_list[i][1] += sin * 10
 
         if keys[pygame.K_RIGHT]:
             for i in range(circle_count):
-                pass
+
+                rad = math.atan2(Circle.circle_list[i][1] - center[1], Circle.circle_list[i][0] - center[0])
+                sin = math.sin(rad)
+                cos = math.cos(rad)
+
+                #r = ((Circle.circle_list[i][0] - center[0])**2 + (Circle.circle_list[i][1] - center[1])**2)**0.5
+
+                Circle.circle_list[i][0] -= cos * 10
+                Circle.circle_list[i][1] -= sin * 10
 
 
 # circle-creating--------------------

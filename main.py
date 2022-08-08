@@ -83,8 +83,8 @@ class Circle:
 
                 #r = ((Circle.circle_list[i][0] - center[0])**2 + (Circle.circle_list[i][1] - center[1])**2)**0.5
 
-                Circle.circle_list[i][0] += cos * 10
-                Circle.circle_list[i][1] += sin * 10
+                Circle.circle_list[i][0] += cos
+                Circle.circle_list[i][1] += sin
 
         if keys[pygame.K_RIGHT]:
             for i in range(circle_count):
@@ -95,8 +95,8 @@ class Circle:
 
                 #r = ((Circle.circle_list[i][0] - center[0])**2 + (Circle.circle_list[i][1] - center[1])**2)**0.5
 
-                Circle.circle_list[i][0] -= cos * 10
-                Circle.circle_list[i][1] -= sin * 10
+                Circle.circle_list[i][0] -= cos
+                Circle.circle_list[i][1] -= sin
 
 
 # circle-creating--------------------
